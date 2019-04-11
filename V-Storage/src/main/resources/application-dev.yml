@@ -1,0 +1,52 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/shoppingmall?characterEncoding=utf8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password:
+    druid:
+      username: root
+      password:
+      initial-size: 5
+      max-active: 10
+      min-evictable-idle-time-millis: 100000
+      validation-query: select 1
+  redis:
+    database: 0
+    host: 192.168.1.101
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+  rabbitmq:
+    host: 192.168.1.101
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: /
+    publisher-confirms: true    # 开启发送确认
+    publisher-returns:  true    # 开启发送失败退回
+    listener:
+      direct:
+        acknowledge-mode: manual
+      simple:
+        acknowledge-mode: manual
+mybatis:
+  mapper-locations: classpath*:mapping/*/*.xml
+  type-aliases-package: model.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+mapper:
+  mappers: com.MyMapper
+  not-empty: false
+  identity: MYSQL
+pagehelper:
+  helperDialect: mysql
+  reasonable: false
+  supportMethodsArguments: true
+  params: count=countSql

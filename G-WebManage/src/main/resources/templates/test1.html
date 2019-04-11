@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap-table/bootstrap-table.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/test/IMGUP.css}"/>
+    <title>Title</title>
+
+    <style>
+        .div-a{ float:left;width:49%;border:1px solid #F00}
+    </style>
+</head>
+<body>
+
+<!--<div id="div_imgfile">选择图片</div>-->
+
+<!--
+<a th:href="${#request.getContextPath() + '/'}">111</a>
+<a th:href="${#httpServletRequest.getScheme() + '://' + #httpServletRequest.getServerName() + ':' + #request.getServerPort()  + #request.getContextPath() + '/'} ">222</a>
+-->
+<input id="a" type="button" value="添加">
+
+<br>
+
+<div align="center">
+    <label id="upload">
+        <div id="imageUpload" style="border:1px dashed #9f9f9f;width:120px;height:120px;text-align:center;position:relative;">
+            <div style="margin: auto;  position: absolute;  top: 20px; left: 0; bottom: 0; right: 0;"><h1>+</h1></div>
+        </div>
+    </label>
+
+    <br>
+
+    <div>
+      <a href=jacascript::void(0)><img id="photo" width="120" height="120" th:src="@{/static/images/1.jpg}"></a>
+    </div>
+<!--
+    <div>
+        <a href=jacascript::void(0)><img id="photo1" width="120" height="120" src="static/images/1.jpg"></a>
+    </div>
+-->
+
+<!--    <table id="images">
+        <tr>
+            <td><a href=jacascript::void(0)><img id="photo" width="120" height="120" th:src="@{/static/images/1.jpg}"></a></td>
+            <td><a href=jacascript::void(0)><img id="photo1" width="120" height="120" th:src="@{/static/images/2.jpg}"></a></td>
+        </tr>
+    </table>-->
+
+    <form id="uploadForm" method="post" enctype="multipart/form-data">
+        <input id="field" name="field" type="hidden" value="PRODUCT">
+        <input id="file" name="file" type="file" style="display:none">
+    </form>
+</div>
+
+<br>
+
+<div id="aaa">
+
+    <div id="a1">
+
+    </div>
+
+</div>
+
+
+
+</body>
+<script type="text/javascript" th:src="@{/static/assets/js/jquery-1.11.3.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/test/IMGUP.js}"></script>
+<!--<script type="text/javascript" th:src="@{/static/plugin/LoderStarLib/js/upload.js}"></script>-->
+<script type="text/javascript">
+
+    $(function () {
+
+        $("#upload").on("click",function(){
+            $("#file").click();
+        });
+
+        //选择确定后
+        $("#file").on("change", function(){
+
+            var date = $("#uploadForm")[0];
+            var formData = new FormData(date);
+            $.ajax({
+                url:"http://192.168.1.101:8087/IUploadConfig/fileUpload",  //发送的URL
+                type:"POST",        //类型
+                dataType:"json",
+                data:formData,      //将数据发送
+                async: false,       //是否同步，否
+                cache: false,       //是否缓存，否
+                contentType: false,     //需要使用
+                processData: false,     //需要使用
+                success:function(result){
+                    //发送成功后需要执行的动作
+
+                    var data = result;
+                    if (data.success) {
+
+                        var html =
+                            "    <div>\n" +
+                            "      <a href='jacascript::void(0)'><img id='photo' width='120' height='120' src='static/images/1.jpg'></a>\n" +
+                            "    </div>";
+                        $("#aaa").append(html);
+
+                    } else {
+                        layer.alert(data.data);
+                    }
+                }
+            });
+//            $("#uploadForm").submit();
+//            $("#photoValue").val(photoValue);
+            $("#file").val("");
+        })
+
+        $("#upload").mouseover(function(){
+            $("#upload").css({
+                "background":"#d6f7ff"
+            });
+        });
+
+        $("#upload").mouseout(function(){
+            $("#upload").css({
+                "background":"#0000"
+            });
+        });
+
+        $("#a").on("click", function() {
+/*
+
+            var myParent = document.getElementById("aaa");
+            var myImage = document.createElement("img");
+            myImage.src = '@{/static/images/1.jpg}';
+            myParent.appendChild(myImage);
+*/
+        });
+    });
+
+</script>
+</html>
+

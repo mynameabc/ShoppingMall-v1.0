@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/static/lib/webuploader/0.1.5/webuploader2.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+    <title></title>
+</head>
+<body>
+<!--
+<div id="uploader" class="controls">
+    &lt;!&ndash; 用于选择文件 &ndash;&gt;
+    <div id="filePicker">选择图片</div>
+
+    &lt;!&ndash; 用于显示文件列表 &ndash;&gt;
+    <div id="fileList" class="uploader-list"></div>
+</div>-->
+
+<div class="uploader-demo">
+    <!--用来存放item-->
+    <div id="fileList" class="uploader-list"></div>
+    <div id="filePicker">选择图片</div>
+</div>
+
+</body>
+<script type="text/javascript" th:src="@{/static/plugin/jquery/1.9.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/lib/webuploader/0.1.5/webuploader.min.js}"></script>
+<script>
+
+/*
+    // 图片上传demo
+    $(function () {
+        var $ = jQuery,
+            $list = $('#fileList'),
+            // 优化retina, 在retina下这个值是2
+            ratio = 1 || 1,
+
+            // 缩略图大小
+            thumbnailWidth = 100 * ratio,
+            thumbnailHeight = 100 * ratio,
+
+            // 初始化Web Uploader
+            uploader = WebUploader.create({
+                // 选完文件后，是否自动上传。
+                auto: true,
+                // swf文件路径
+                swf: 'static/lib/webUpload/Uploader.swf',
+                fileNumLimit: 1,
+                // 文件接收服务端。
+                server: "universalFileUpload",
+                // 选择文件的按钮。可选。
+                // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                pick: '#filePicker',
+                formData: {
+                    destDir: "user"
+                },
+                // 不压缩image
+                resize: false,
+                // 只允许选择图片文件。
+                accept: {
+                    title: 'Images',
+                    extensions: 'gif,jpg,jpeg,bmp,png',
+                    mimeTypes: 'image/gif,image/jpg,image/jpeg,image/bmp,image/png'   //修改这行
+                }
+            });
+
+        // 当有文件添加进来的时候
+        uploader.on('fileQueued', function (file) {
+            var $list = $('#fileList');
+            var $li = $(
+                '<div id="' + file.id + '" class="file-item thumbnail">' +
+                '<p class="imgWrap"><img></p>' +
+                '<div class="info">' + file.name + '</div>' +
+                '</div>'
+                ),
+                $img = $li.find('img');
+            var $btns = $('<div class="file-panel">' +
+                '<span class="cancel" >删除</span>' +
+                '<span class="search-plus" >放大</span>'
+            ).appendTo($li);
+            $li.on('mouseenter', function () {
+                $btns.stop().animate({height: 30});
+            });
+            $li.on('mouseleave', function () {
+                $btns.stop().animate({height: 0});
+            });
+            // $list为容器jQuery实例
+            $list.append($li);
+            $btns.on('click', 'span', function () {
+                var index = $(this).index();
+                switch (index) {
+                    case 0:
+                        uploader.removeFile(file);
+                        removeFile(file);
+                        return;
+                }
+            });
+
+            // 创建缩略图
+            // 如果为非图片文件，可以不用调用此方法。
+            // thumbnailWidth x thumbnailHeight 为 100 x 100
+            uploader.makeThumb(file, function (error, src) {
+                if (error) {
+                    $img.replaceWith('<span>不能预览</span>');
+                    return;
+                }
+                $img.attr('src', src);
+            }, thumbnailWidth, thumbnailHeight);
+        });
+        uploader.on('beforeFileQueued',function (file) {
+            //限制个数
+            var fileNumLimit =uploader.options.fileNumLimit;
+            var completeNum = uploader.getFiles("complete").length;
+            if (fileNumLimit == completeNum){
+                $.fn.modalAlert("最大上传"+fileNumLimit+"个文件，不能超过","error");
+            }
+            /!*console.log("上传限制"+);
+            console.log("上传成功"+);*!/
+        });
+        // 文件上传过程中创建进度条实时显示。
+        uploader.on('uploadProgress', function (file, percentage) {
+            var $li = $('#' + file.id),
+                $percent = $li.find('.progress span');
+            // 避免重复创建
+            if (!$percent.length) {
+                $percent = $('<p class="progress"><span></span></p>')
+                    .appendTo($li)
+                    .find('span');
+            }
+            $percent.css('width', percentage * 100 + '%');
+        });
+        // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+        uploader.on('uploadSuccess', function (file, response) {
+            //photoList.push(JSON.parse(response._raw));
+            //$("#photo").val(JSON.stringify(photoList));
+            $("#photo").val(response._raw);
+            var fileStatusnum = uploader.getStats();
+            // $.fn.modalMsg("上传成功"+fileStatusnum.successNum+"个文件","success");
+//            $.fn.modalMsg("上传成功", "success");
+            $('#' + file.id).addClass('upload-state-done');
+        });
+
+        // 文件上传失败，显示上传出错。
+        uploader.on('uploadError', function (file) {
+            //alert("失败");
+            var $li = $('#' + file.id),
+                $error = $li.find('div.error');
+            // 避免重复创建
+            if (!$error.length) {
+                $error = $('<div class="error"></div>').appendTo($li);
+            }
+            $error.text('上传失败');
+            var fileStatusnum = uploader.getStats();
+            layer.msg("上传失败" + fileStatusnum.uploadFailNum + "个文件", {icon: 1, time: 1000});
+        });
+
+        // 完成上传完了，成功或者失败，先删除进度条。
+        uploader.on('uploadComplete', function (file) {
+            $('#' + file.id).find('.progress').remove();
+        });
+
+        // 负责view的销毁
+        function removeFile( file ) {
+            var $li = $('#'+file.id);
+            $li.off().find('.file-panel').off().end().remove();
+        }
+
+    });
+*/
+
+
+    var uploader = WebUploader.create(
+        {
+            swf:"static/lib/webUpload/Uploader.swf",
+            server:"universalFileUpload",
+            pick:"#filePicker",
+
+            // 可以重复上传 但是筛选不了重复图片
+            duplicate: true,
+
+            // 不压缩image
+            resize: false,
+
+            //只允许选择图片
+            accept:{
+                title:'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            },
+
+            auto:true,
+        }
+    );
+
+    /**
+     * 2.选择文件后, 文件信息队列展示
+     */
+    uploader.on("fileQueued", function(file){
+
+        var $list = $('#fileList');
+        var $li = $(
+            '<div id="' + file.id + '" class="file-item thumbnail">' +
+            '<p class="imgWrap"><img></p>' +
+            '</div>'
+            ),
+            $img = $li.find('img');
+        var $btns = $('<div class="file-panel">' +
+            '<span class="cancel" >删除</span>' +
+            '<span class="search-plus" >编辑</span>' +
+            '<span class="edit" >放大</span>'
+        ).appendTo($li);
+        $li.on('mouseenter', function () {
+            $btns.stop().animate({height: 30});
+        });
+        $li.on('mouseleave', function () {
+            $btns.stop().animate({height: 0});
+        });
+        // $list为容器jQuery实例
+        $list.append($li);
+        $btns.on('click', 'span', function () {
+            var index = $(this).index();
+            switch (index) {
+                case 0:
+                    uploader.removeFile(file);
+                    removeFile(file);
+                    return;
+                case 1:
+                    alert(111);
+                    return;
+                case 2:
+                    alert(000);
+                    return;
+            }
+        });
+
+        //制作缩略图
+        //file
+        //error:不是图片，则有error
+        //src:代表生成后的缩略图的地址
+        uploader.makeThumb(file,function(error,src){
+            //判断是否已经成功生成缩略图
+            if(error){
+                $("#"+file.id).find("img").replaceWith("无法预览");
+            }
+
+            //成功
+            $("#"+file.id).find("img").attr("src",src);
+
+        });
+    });
+
+    //5.在上传的过程中实现文件上传监控
+    //percentage：代表的时候文件的百分比： 0.15   1
+    uploader.on("uploadProgress",function(file,percentage){
+//        $("#"+file.id).find("span.percentage").text(Math.round(percentage*100)+"%");
+    });
+
+    // 负责view的销毁
+    function removeFile( file ) {
+        var $li = $('#'+file.id);
+        $li.off().find('.file-panel').off().end().remove();
+    }
+
+</script>
+</html>
+

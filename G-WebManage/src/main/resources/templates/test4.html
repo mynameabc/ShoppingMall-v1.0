@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/static/lib/webUpload/webuploader.css}"/>
+    <title></title>
+</head>
+<body>
+
+<!--<form class="form-horizontal" id="fromuserud">
+    姓    名 <input type="text" name="aeName" class="form-control" id="aeName_update" placeholder="请输入姓名">
+    上传头像 <input type="file"  name="ae_photourl">
+    <button type="button" id="user_update">更新</button>
+</form>-->
+
+<!--
+
+<span>
+    <button id="btn_3_select" type="button" class="btn btn-primary" onclick="bpmnFile.click()">选择</button>
+    &nbsp;
+        <input type="file" id="bpmnFile" style="display:none">
+        <a href=jacascript::void(0)><img id="photo" width="300" height="100" th:src="@{/static/images/uploadDefault.jpg}"></a>
+        <input id="photoValue" name="photoValue" type="hidden"/>
+    &nbsp;
+    <button id="btn_3_reset" type="button" class="btn btn-default">清除</button>
+</span>
+-->
+
+<div id="uploader">
+    <!-- 用于选择文件 -->
+    <div id="filePicker" style="border:1px dashed #9f9f9f;width:108px;height:108px;text-align:center;position:relative;">
+        <h1>+</h1>
+    </div>
+
+    <!-- 用于显示文件列表 -->
+    <div id="fileList"></div>
+
+
+</div>
+
+</body>
+<script type="text/javascript" th:src="@{/static/plugin/jquery/1.9.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/lib/webUpload/webuploader.min.js}"></script>
+<script>
+
+    $(function () {
+
+    });
+
+    var uploader = WebUploader.create(
+        {
+            swf:"static/lib/webUpload/Uploader.swf",
+            server:"universalFileUpload",
+            pick:"#filePicker",
+
+            //只允许选择图片
+            accept:{
+                title:'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            },
+            auto:true,
+        }
+    );
+
+    /**
+     * 2.选择文件后, 文件信息队列展示
+     */
+    uploader.on("fileQueued", function(file){
+
+
+        var $li = $(
+            '<div id="' + file.id + '">' +
+            '<img>' +
+            '</div>'
+            ),
+            $img = $li.find('img');
+
+        //把文件信息追加到fileList的div中
+/*        $("#fileList").append("<div id="+file.id+"><img/><div><span class='percentage'></span></div><span class='state'></span></div>");*/
+
+        $("#fileList").append($li);
+
+        //制作缩略图
+        //file
+        //error:不是图片，则有error
+        //src:代表生成后的缩略图的地址
+        uploader.makeThumb(file,function(error,src){
+            //判断是否已经成功生成缩略图
+            if(error){
+                $("#"+file.id).find("img").replaceWith("无法预览");
+            }
+
+            //成功
+            $("#"+file.id).find("img").attr("src",src);
+
+        });
+    });
+
+    //5.在上传的过程中实现文件上传监控
+    //percentage：代表的时候文件的百分比： 0.15   1
+    uploader.on("uploadProgress",function(file,percentage){
+//        $("#"+file.id).find("span.percentage").text(Math.round(percentage*100)+"%");
+    });
+
+</script>
+
+</html>
+
+
+

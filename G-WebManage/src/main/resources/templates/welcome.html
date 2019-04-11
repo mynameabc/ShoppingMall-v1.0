@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap/css/bootstrap.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/static/plugin/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/static/plugin/zTree/v3/css/bootstrapStyle/bootstrapStyle.css}"/>
+	<title>Title</title>
+</head>
+<body>
+<ol class="breadcrumb">
+	<li>首页</li>
+</ol>
+<ul id="memberRanksZTree" class="ztree"></ul>
+</body>
+<script type="text/javascript" th:src="@{/static/plugin/jquery/1.9.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/zTree/v3/js/jquery.ztree.all-3.5.min.js}"></script>
+<script type="text/javascript">
+
+    var zNodes_MemberRanks;
+    var zTreeObj_MemberRanks;
+    var setting_MemberRanks = {
+        data: {
+            simpleData: {
+                enable:true
+            }
+        },callback: {
+
+        }
+    };
+    $(function () {
+
+        var zNodes =[
+            { id:1, pid:0, name:"展开、折叠 自定义图标不同",open:true},
+            { id:11, pid:1, name:"叶子节点1", icon:"static/plugin/zTree/v3/css/bootstrapStyle/img/3.png"},
+            { id:2, pid:0, name:"展开、折叠 自定义图标相同", open:true},
+            { id:21, pid:2, name:"叶子节点1"},
+            { id:22, pid:2, name:"叶子节点2"},
+            { id:23, pid:2, name:"叶子节点3"}
+        ];
+
+        zTreeObj_MemberRanks = $.fn.zTree.init($("#memberRanksZTree"), setting_MemberRanks, zNodes);
+    });
+
+</script>
+</html>

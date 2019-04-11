@@ -1,0 +1,41 @@
+.input-group .dropdown {
+    display: table-cell;
+}
+.selecttree {
+    padding-left: 0;
+    padding-right: 0;
+    border: solid 1px #ccc;
+}
+.ztree * {
+    font-size:1em;
+}
+.dropdown {
+    display: inline-block;
+}
+.atct .dropdown {
+    max-width: 530px;
+}
+.atct .dropdown button:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 490px;
+    display: block;
+}
+.dropdown-menu {
+    padding: 0;
+}
+.panel-footer {
+    width: 100%;
+    padding: 0;
+}
+.selecttree ul.ztree {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.btn {
+    border: 1px solid #e6e6e6;
+}

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cn.ShoppingMall</groupId>
+    <artifactId>A-ShoppingMall</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>../X-Contact</module>
+        <module>../W-Model</module>
+        <module>../V-Storage</module>
+        <module>../V-BaseFacilities</module>
+        <module>../T-Auxiliary</module>
+        <module>../M-Module</module>
+        <module>../G-API</module>
+        <module>../G-WebManage</module>
+    </modules>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.0.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
+
+    <properties>
+
+
+        <!-- **********************************工具包/杂项************************************ -->
+
+        <!-- 序列化协议的系列化框架 -->
+        <fat.version>2.57</fat.version>
+
+        <!-- 阿里JSON工具包 -->
+        <alibaba-fastjson.version>1.2.35</alibaba-fastjson.version>
+
+        <!-- 阿里连接池包 -->
+        <druid-spring-boot-starter.version>1.1.9</druid-spring-boot-starter.version>
+
+        <!-- Swagger -->
+        <swagger.verion>2.6.1</swagger.verion>
+
+        <!-- 阿里SDK及短信包 -->
+        <aliyun-java-sdk-dysmsapi.version>1.0.0</aliyun-java-sdk-dysmsapi.version>
+        <aliyun-java-sdk-core.version>3.3.1</aliyun-java-sdk-core.version>
+
+        <!-- MyBatis Mapper通用包 -->
+        <mapper.version>3.4.4</mapper.version>
+
+        <springBootMyBatisMapper.version>1.1.4</springBootMyBatisMapper.version>
+
+        <mybatis.version>1.3.2</mybatis.version>
+
+        <pagehelper.verion>1.2.3</pagehelper.verion>
+
+        <spring.security.version>4.0.3.RELEASE</spring.security.version>
+
+        <servlet-api.version>2.5</servlet-api.version>
+
+        <fastDFS.version>1.27-SNAPSHOT</fastDFS.version>
+
+        <!-- apache相关包 -->
+        <commons-lang3.version>3.3.2</commons-lang3.version>
+        <commons-io.version>1.3.2</commons-io.version>
+        <commons-net.version>3.3</commons-net.version>
+
+        <!-- POI Office操作组件 -->
+        <poi.version>3.9</poi.version>
+
+        <!-- cos上传组件 -->
+        <cos.version>26Dec2008</cos.version>
+
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- 序列化协议的系列化框架 -->
+            <dependency>
+                <groupId>de.ruedigermoeller</groupId>
+                <artifactId>fst</artifactId>
+                <version>${fat.version}</version>
+            </dependency>
+
+            <!-- 阿里连接池包 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid-spring-boot-starter.version}</version>
+            </dependency>
+
+            <!-- 阿里JSON工具包 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${alibaba-fastjson.version}</version>
+            </dependency>
+
+            <!-- Swagger2 -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.verion}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.verion}</version>
+            </dependency>
+
+            <!-- 阿里SDK及短信包 -->
+<!--            <dependency>
+                <groupId>com.aliyuncs</groupId>
+                <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+                <version>${aliyun-java-sdk-dysmsapi.version}</version>
+            </dependency>-->
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
+                <version>${aliyun-java-sdk-core.version}</version>
+            </dependency>
+
+            <!-- Spring Boot MyBatis Mapper通用包 -->
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${springBootMyBatisMapper.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.verion}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-core</artifactId>
+                <version>${spring.security.version}</version>
+            </dependency>
+
+            <!-- servlet包 -->
+<!--            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <scope>provided</scope>
+            </dependency>-->
+
+            <dependency>
+                <groupId>org.csource</groupId>
+                <artifactId>fastdfs-client-java</artifactId>
+                <version>1.27-SNAPSHOT</version>
+            </dependency>
+
+            <!-- Apache工具组件 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-net</groupId>
+                <artifactId>commons-net</artifactId>
+                <version>${commons-net.version}</version>
+            </dependency>
+
+            <!-- POI Office操作组件 -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-scratchpad</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+            <!-- cos上传组件 -->
+
+
+            <dependency>
+                <groupId>common</groupId>
+                <artifactId>Z-Common-utils</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>

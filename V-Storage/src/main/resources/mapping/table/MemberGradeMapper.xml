@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.table.MemberGradeMapper" >
+  <resultMap id="BaseResultMap" type="model.entity.MemberGrade" >
+    <id column="gradeID" property="gradeID" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="delFlag" property="delFlag" jdbcType="TINYINT" />
+    <result column="imgSrc" property="imgSrc" jdbcType="VARCHAR" />
+    <result column="rebate" property="rebate" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 会员等级树-ZTree数据结构 -->
+  <resultMap id="MemberGrade_for_ZTree" type="model.vo.ZTreeNode">
+    <id column="gradeID" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="pId" property="pId" jdbcType="BIGINT" />
+    <result column="open" property="open" jdbcType="BOOLEAN" />
+  </resultMap>
+  <!-- 会员等级树-bootstrap-treeview数据结构 -->
+  <resultMap id="MemberGrade_for_TreeView" type="model.vo.TreeViewNode">
+    <id column="gradeID" property="id" jdbcType="BIGINT" />
+    <result column="name" property="text" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getMemberGrade_for_ZTree" resultMap="MemberGrade_for_ZTree">
+    SELECT gradeID AS id, name, 0 AS pId, true AS open
+    FROM member_grade ORDER BY gradeID;
+  </select>
+  <select id="getMemberGrade_for_TreeView" resultMap="MemberGrade_for_TreeView">
+    SELECT a.gradeID, IF (a.gradeID = 0, a.name, CONCAT(a.name, ' (', COUNT(b.gradeId), ')')) AS name
+    FROM member_grade a LEFT JOIN member b ON a.`gradeID` = b.`gradeID` GROUP BY b.`gradeID` ORDER BY a.gradeID;
+  </select>
+
+</mapper>

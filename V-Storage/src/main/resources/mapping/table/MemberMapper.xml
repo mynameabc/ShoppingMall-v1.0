@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.table.MemberMapper" >
+  <resultMap id="BaseResultMap" type="model.entity.Member" >
+    <id column="memberID" property="memberID" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="pws" property="pws" jdbcType="VARCHAR" />
+    <result column="gradeID" property="gradeID" jdbcType="INTEGER" />
+    <result column="parentID" property="parentID" jdbcType="BIGINT" />
+    <result column="flag" property="flag" jdbcType="TINYINT" />
+    <result column="login_lock" property="login_lock" jdbcType="BIT" />
+    <result column="register_time" property="register_time" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    memberID, name, email, mobile, pws, gradeID, parentID, flag, login_lock, register_time
+  </sql>
+  <select id="getMemberList" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM member
+    <where>
+      <if test="memberListDTO.name != null">
+        name = #{memberListDTO.name}
+      </if>
+      <if test="memberListDTO.email != null">
+        and email = #{memberListDTO.email}
+      </if>
+      <if test="memberListDTO.mobile != null">
+        and mobile = #{memberListDTO.mobile}
+      </if>
+      <if test="memberListDTO.memberGradeID != null">
+        and gradeID = #{memberListDTO.memberGradeID}
+      </if>
+      <if test="memberListDTO.login_lock != -1">
+        and login_lock = #{memberListDTO.login_lock}
+      </if>
+      <if test="memberListDTO.parentID != -1">
+        <if test="memberListDTO.parentID == 0">
+          and parentID = 0
+        </if>
+        <if test="memberListDTO.parentID == 1">
+          and parentID != 0
+        </if>
+      </if>
+    </where>
+  </select>
+  <select id="countAll" resultType="java.lang.Long">
+    select count(1) from member;
+  </select>
+</mapper>

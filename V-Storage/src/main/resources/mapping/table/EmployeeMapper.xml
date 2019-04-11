@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.table.EmployeeMapper" >
+    <resultMap id="BaseResultMap" type="model.entity.Employee" >
+        <id column="employeeID" property="employeeID" jdbcType="BIGINT" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+        <result column="jobNumber" property="jobNumber" jdbcType="VARCHAR" />
+        <result column="pws" property="pws" jdbcType="VARCHAR" />
+        <result column="realName" property="realName" jdbcType="VARCHAR" />
+        <result column="officeID" property="officeID" jdbcType="INTEGER" />
+        <result column="sex" property="sex" jdbcType="BIT" />
+        <result column="photo" property="photo" jdbcType="VARCHAR" />
+        <result column="loginLock" property="loginLock" jdbcType="BIT" />
+        <result column="delFlag" property="delFlag" jdbcType="BIT" />
+        <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        employeeID, name, email, mobile, jobNumber, pws, realName, officeID, sex, photo,
+        loginLock, delFlag, createTime
+    </sql>
+
+    <delete id="deleteForIDS">
+        DELETE FROM sys_employee WHERE employeeID in
+        <foreach collection="IDS" item="arr" index="no" open="(" separator="," close=")">
+            #{arr}
+        </foreach>
+    </delete>
+</mapper>

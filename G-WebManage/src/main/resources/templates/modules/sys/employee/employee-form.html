@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/nice-validator/jquery.validator.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap-switch/css/bootstrap-switch.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/icheck-1.x/skins/all.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/icheck-1.x/skins/square/blue.css}"/>
+    <style type="text/css">
+        .input-width {
+            width: 300px;
+        }
+
+        .formClass {
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+    <title>机构管理</title>
+</head>
+<body>
+<div id="formDiv" class="formClass">
+    <form id="inputForm" class="form-horizontal">
+        <input id="id" name="id" type="hidden"/>
+        <input id="handlerType" name="handlerType" type="hidden"/>
+        <table class="table table-bordered  table-condensed dataTables-example dataTable no-footer">
+            <tbody>
+            <tr>
+                <td align="center" colspan="4">
+                    <div class="input-group">
+                        <span>
+                            <img id="photo" width="100" height="100">
+                            <input id="photoValue" name="photoValue" type="hidden"/>
+                        </span>
+                    </div>
+                    <p></p>
+<!--
+                    <div class="input-group">
+                        <input id="icon" name="icon" type="hidden"/>
+                        <span id="icon_content" data-align="center">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>
+                                <button id="btn_select" type="button" class="btn btn-primary">选择</button>&nbsp;
+                                <button id="btn_reset" type="button" class="btn btn-default">清除</button>
+                            </span>
+                            &nbsp;&nbsp;
+                            <span id="icon_key" class=""></span>&nbsp;
+                            <span id="icon_value"></span>&nbsp;
+                        </span>
+                    </div>
+                    -->
+                </td>
+            </tr>
+            <tr>
+                <td class="width-15 active"><label class="pull-right"><font color="red">*</font>工号:</label></td>
+                <td class="width-35"><input id="jobNumber" name="jobNumber" class="form-control"/></td>
+                <td class="width-15 active"><label class="pull-right"><font color="red">*</font>所属机构:</label></td>
+                <td class="width-35">
+                    <input id="officeID" name="officeID" type="hidden"/>
+                    <div class="input-group">
+                        <input id="officeName" name="officeName" readonly class="form-control input-width"/>
+                        <span class="input-group-btn">
+	       		            <button type="button" id="officeSelectButton" class="btn btn-primary"><i
+                                    class="glyphicon glyphicon-search"></i></button>
+	             	        <button type="button" id="officeDeleteButton" class="close" data-dismiss="alert"
+                                    style="position: absolute; top: 5px; right: 50px; z-index: 999; display: block;">×</button>
+                        </span>
+                    </div>
+                    <label id="Name-error" class="error" style="display:none"></label>
+                </td>
+            </tr>
+            <tr>
+                <td class="width-15 active"><label class="pull-right"><font color="red">*</font>真实姓名:</label></td>
+                <td class="width-35"><input id="realName" name="realName" class="form-control"/></td>
+                <td class="width-15 active"><label class="pull-right">登陆锁:</label></td>
+                <td class="width-35"><input id="loginLock" name="loginLock" type="checkbox" checked/></td>
+            </tr>
+            <tr>
+                <td class="width-15 active"><label class="pull-right"><font color="red">*</font>登陆名:</label></td>
+                <td class="width-35"><input id="name" name="name" class="form-control"/></td>
+                <td class="width-15 active"><label class="pull-right"><font color="red">*</font>密码:</label></td>
+                <td class="width-35"><input id="pws" name="pws" type="password" class="form-control"/></td>
+            </tr>
+            <tr>
+                <td class="width-15 active"><label class="pull-right">手机号码:</label></td>
+                <td class="width-35"><input id="mobile" name="mobile" class="form-control"/></td>
+                <td class="width-15 active"><label class="pull-right">邮箱:</label></td>
+                <td class="width-35"><input id="email" name="email" class="form-control"/></td>
+            </tr>
+            <tr>
+                <td class="width-15 active"><label class="pull-right">性别:</label></td>
+                <td class="width-35">
+                    <input type="radio" value="1" name="sex" id="man"/>&nbsp;男&nbsp;&nbsp;&nbsp;
+                    <input type="radio" value="0" name="sex" id="woman"/>&nbsp;女&nbsp;&nbsp;&nbsp;
+                </td>
+                <td class="width-15 active"></td>
+                <td class="width-35"></td>
+            </tr>
+            <tr>
+                <td class="width-15 active"><label class="pull-right">角色:</label></td>
+                <td class="width-35" colspan="3">
+                    <input id="1" name="1" type="checkbox"/>&nbsp;超级管理员&nbsp;&nbsp;&nbsp;
+                    <input id="2" name="2" type="checkbox"/>&nbsp;仓管&nbsp;&nbsp;&nbsp;
+                    <input id="3" name="3" type="checkbox"/>&nbsp;业务员&nbsp;&nbsp;&nbsp;
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<div id="msg_holder" class="formClass" style="color: #DC143C"></div>
+<script type="text/javascript" th:src="@{/static/plugin/jquery/1.9.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap-switch/js/bootstrap-switch.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/nice-validator/jquery.validator.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/nice-validator/local/zh-CN.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/layer/2.4/layer.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/icheck-1.x/icheck.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/windows.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/common.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/map.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/LoderStarLib/js/select.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/modules/sys/employee/employee-form.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/modules/common/area.json}"></script>
+</body>
+</html>

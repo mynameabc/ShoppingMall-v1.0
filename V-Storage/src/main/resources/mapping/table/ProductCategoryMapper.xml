@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.ProductCategoryMapper" >
+  <resultMap id="BaseResultMap" type="model.entity.ProductCategory" >
+    <id column="categoryID" property="categoryID" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="parentID" property="parentID" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="DECIMAL" />
+    <result column="showFlag" property="showFlag" jdbcType="BIT" />
+    <result column="icon_1" property="icon_1" jdbcType="VARCHAR" />
+    <result column="icon_2" property="icon_2" jdbcType="VARCHAR" />
+    <result column="icon_3" property="icon_3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    categoryID, `name`, parentID, sort, showFlag, icon_1, icon_2, icon_3
+  </sql>
+</mapper>

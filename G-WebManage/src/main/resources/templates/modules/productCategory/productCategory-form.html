@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<link>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/static/plugin/nice-validator/jquery.validator.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/static/plugin/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap-switch/css/bootstrap-switch.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/static/plugin/icheck-1.x/skins/all.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/static/plugin/icheck-1.x/skins/square/blue.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/static/lib/webuploader/0.1.5/webuploader2.css}"/>
+<style type="text/css">
+    .input-width {
+        width:300px;
+    }
+    .formClass {
+        margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;
+    }
+    .td-center {
+        vertical-align: middle;
+        text-align: center;
+    }
+</style>
+<title>菜单管理</title>
+</head>
+<body>
+<div id="formDiv" class="formClass">
+    <form id="inputForm" class="form-horizontal" data-validator-option="{timely:2, theme:'yellow_right_effect'}">
+        <input id="id" name="id" type="hidden"/>
+        <input id="handlerType" name="handlerType" type="hidden"/>
+        <table class="table table-bordered  table-condensed dataTables-example dataTable no-footer">
+            <tbody>
+            <tr>
+                <td class="td-center"><label class="pull-right">上级分类:</label></td>
+                <td class="width-35">
+                    <input id="parentID" name="parentID" type="hidden"/>
+                    <div class="input-group input-width">
+                        <input id="parentName" name="parentName" readonly class="form-control"/>
+                        <span class="input-group-btn">
+	       		            <button type="button"  id="Button" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
+	             	        <button type="button" id="DelButton" class="close" data-dismiss="alert" style="position: absolute; top: 5px; right: 50px; z-index: 999; display: block;">×</button>
+                        </span>
+                    </div>
+                    <label id="Name-error" class="error" style="display:none"></label>
+                </td>
+            </tr>
+            <tr>
+                <td class="td-center"><label class="pull-right"><font color="red">*</font>名称:</label></td>
+                <td class="width-35"><input id="name" name="name" class="form-control input-width"/></td>
+            </tr>
+            <tr>
+                <td class="td-center"><label class="pull-right"><font color="red">*</font>排序:</label></td>
+                <td class="width-35"><input id="sort" name="sort" class="form-control input-width"/></td>
+            </tr>
+            <tr>
+                <td class="td-center"><label class="pull-right">是否显示:</label></td>
+                <td class="width-35"><input id="showFlag" name="showFlag" type="checkbox" checked/></td>
+            </tr>
+            <tr>
+                <td class="td-center"><label class="pull-right">图标:</label></td>
+                <td>
+                    <div class="input-group">
+                        <input id="icon" name="icon" type="hidden"/>
+                        <span id="icon_content">
+                            <span>
+                                <button id="btn_select" type="button" class="btn btn-primary">选择</button>&nbsp;
+                                <button id="btn_reset" type="button" class="btn btn-default">清除</button>
+                            </span>
+                            &nbsp;&nbsp;
+                            <span id="icon_key" class=""></span>&nbsp;
+                            <span id="icon_value"></span>&nbsp;
+                        </span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="td-center"><label class="pull-right">图标:</label></td>
+                <td>
+                    <div class="input-group">
+                        <input id="icon_2" name="icon" type="hidden"/>
+                        <span id="icon_2_content">
+                            <span>
+                                <button id="btn_2_select" type="button" class="btn btn-primary">选择</button>&nbsp;
+                                <button id="btn_2_reset" type="button" class="btn btn-default">清除</button>
+                            </span>
+                            &nbsp;&nbsp;
+                            <span id="icon_2_key" class=""></span>&nbsp;
+                            <span id="icon_2_value"></span>&nbsp;
+                        </span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="td-center"><label class="pull-right">图标3:</label></td>
+                <td>
+                    <div class="input-group">
+                        <input id="icon_3" name="icon" type="hidden"/>
+                        <span id="icon_3_content">
+                            <span>
+                                <!--<button id="filePicker" type="button" class="btn btn-primary" onclick="bpmnFile.click()">选择</button>-->
+<!--                                <button id="filePicker" type="button" class="btn btn-primary">选择</button>
+                                &nbsp;
+                                    <input id="photoValue" name="photoValue" type="hidden"/>
+                                    <div id="fileList" class="uploader-list"></div>-->
+                                <div class="uploader-demo">
+                                    <!--用来存放item-->
+                                    <div id="fileList" class="uploader-list"></div>
+                                    <div id="filePicker">
+                                        <button type="button" class="btn btn-primary">选择</button>
+                                    </div>
+                                </div>
+                            </span>
+                            &nbsp;&nbsp;
+                            <span id="icon_3_key" class=""></span>&nbsp;
+                            <span id="icon_3_value"></span>&nbsp;
+                        </span>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<script type="text/javascript" th:src="@{/static/plugin/jquery/1.9.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap-switch/js/bootstrap-switch.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/nice-validator/jquery.validator.min.js}" ></script>
+<script type="text/javascript" th:src="@{/static/plugin/nice-validator/local/zh-CN.js}" ></script>
+<script type="text/javascript" th:src="@{/static/plugin/icheck-1.x/icheck.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/layer/2.4/layer.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/windows.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/map.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/LoderStarLib/js/select.js}"></script>
+<script type="text/javascript" th:src="@{/static/lib/webuploader/0.1.5/webuploader.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/modules/productCategory/productCategory-form.js}"></script>
+<script type="text/javascript">
+
+    var uploader = WebUploader.create(
+        {
+            swf:"static/lib/webUpload/Uploader.swf",
+            server:"universalFileUpload",
+            pick:"#filePicker",
+
+            // 不压缩image
+            resize: false,
+
+            //只允许选择图片
+            accept:{
+                title:'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            },
+
+            auto:true,
+        }
+    );
+
+    /**
+     * 2.选择文件后, 文件信息队列展示
+     */
+    uploader.on("fileQueued", function(file){
+
+        var defaultFile = "";
+
+
+
+        var $list = $('#fileList');
+        var $li = $(
+            '<div id="' + file.id + '" class="file-item thumbnail">' +
+            '<p class="imgWrap"><img></p>' +
+            '</div>'
+            ),
+            $img = $li.find('img');
+        var $btns = $('<div class="file-panel">' +
+            '<span class="cancel" >删除</span>' +
+            '<span class="search-plus" >编辑</span>' +
+            '<span class="edit" >放大</span>'
+        ).appendTo($li);
+        $li.on('mouseenter', function () {
+            $btns.stop().animate({height: 30});
+        });
+        $li.on('mouseleave', function () {
+            $btns.stop().animate({height: 0});
+        });
+        // $list为容器jQuery实例
+        $list.append($li);
+        $btns.on('click', 'span', function () {
+            var index = $(this).index();
+            switch (index) {
+                case 0:
+                    uploader.removeFile(file);
+                    removeFile(file);
+                    return;
+                case 1:
+                    alert(111);
+                    return;
+                case 2:
+                    alert(000);
+                    return;
+            }
+        });
+
+        //制作缩略图
+        //file
+        //error:不是图片，则有error
+        //src:代表生成后的缩略图的地址
+        uploader.makeThumb(file,function(error,src){
+            //判断是否已经成功生成缩略图
+            if(error){
+                $("#"+file.id).find("img").replaceWith("无法预览");
+            }
+
+            //成功
+            $("#"+file.id).find("img").attr("src",src);
+
+        });
+    });
+
+    //5.在上传的过程中实现文件上传监控
+    //percentage：代表的时候文件的百分比： 0.15   1
+    uploader.on("uploadProgress",function(file,percentage){
+    //        $("#"+file.id).find("span.percentage").text(Math.round(percentage*100)+"%");
+    });
+
+    // 负责view的销毁
+    function removeFile( file ) {
+        var $li = $('#'+file.id);
+        $li.off().find('.file-panel').off().end().remove();
+    }
+
+    $(function () {
+
+        $('#bpmnFile').on('change', function (e) {
+
+            //        $('#bpmnFile').attr("src", "G:\\defaultPhoto.jpg");
+        });
+    });
+
+</script>
+</body>
+</html>

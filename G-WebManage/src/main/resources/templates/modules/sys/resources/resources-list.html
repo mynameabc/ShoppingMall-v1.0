@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap-table/bootstrap-table.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/jquery-treegrid-master/css/jquery.treegrid.css}" />
+    <title>资源管理</title>
+</head>
+<body>
+<ol class="breadcrumb">
+    <li>首页</li>
+    <li>系统设置</li>
+    <li>资源管理</li>
+</ol>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="toolbar" class="btn-group" style="margin-bottom: 10px;">
+                <button id="btn_add" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;新建
+                </button>
+            </div>
+            <table id="table"></table>
+            <br/><br/>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/static/plugin/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap-table/bootstrap-table.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/jquery-treegrid-master/js/jquery.treegrid.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap-table/extensions/treegrid/bootstrap-table-treegrid.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/layer/2.4/layer.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/map.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/windows.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/modules/sys/resources/resources-list.js}"></script>
+</html>

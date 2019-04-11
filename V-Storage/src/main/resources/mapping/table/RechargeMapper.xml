@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.table.RechargeMapper" >
+  <resultMap id="BaseResultMap" type="model.entity.Recharge" >
+    <id column="rechargeID" property="rechargeID" jdbcType="BIGINT" />
+    <result column="memberID" property="memberID" jdbcType="BIGINT" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="beforeMoney" property="beforeMoney" jdbcType="DECIMAL" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="afterMoney" property="afterMoney" jdbcType="DECIMAL" />
+    <result column="mode" property="mode" jdbcType="INTEGER" />
+    <result column="platformSerialNumber" property="platformSerialNumber" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rechargeID, memberID, createTime, beforeMoney, money, afterMoney, mode, platformSerialNumber
+  </sql>
+</mapper>

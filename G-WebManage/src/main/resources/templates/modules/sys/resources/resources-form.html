@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<link>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/static/plugin/nice-validator/jquery.validator.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/static/plugin/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap-switch/css/bootstrap-switch.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/static/plugin/icheck-1.x/skins/all.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/static/plugin/icheck-1.x/skins/square/blue.css}"/>
+<style type="text/css">
+    .input-width {
+        width:300px;
+    }
+    .formClass {
+        margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;
+    }
+</style>
+<title>菜单管理</title>
+</head>
+<body>
+<div id="formDiv" class="formClass">
+    <form id="inputForm" class="form-horizontal" data-validator-option="{timely:2, theme:'yellow_right_effect'}">
+        <input id="id" name="id" type="hidden"/>
+        <input id="handlerType" name="handlerType" type="hidden"/>
+        <table class="table table-bordered  table-condensed dataTables-example dataTable no-footer">
+            <tbody>
+            <tr>
+                <td class="width-15"><label class="pull-right">上级菜单:</label></td>
+                <td class="width-35">
+                    <input id="parentID" name="parentID" type="hidden"/>
+                    <div class="input-group input-width">
+                        <input id="parentName" name="parentName" readonly class="form-control"/>
+                        <span class="input-group-btn">
+	       		            <button type="button"  id="Button" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
+	             	        <button type="button" id="DelButton" class="close" data-dismiss="alert" style="position: absolute; top: 5px; right: 50px; z-index: 999; display: block;">×</button>
+                        </span>
+                    </div>
+                    <label id="Name-error" class="error" style="display:none"></label>
+                </td>
+            </tr>
+            <tr>
+                <td class="width-15"><label class="pull-right">图标:</label></td>
+                <td>
+                    <div class="input-group">
+                        <input id="icon" name="icon" type="hidden"/>
+                        <span id="icon_content">
+                            <span>
+                                <button id="btn_select" type="button" class="btn btn-primary">选择</button>&nbsp;
+                                <button id="btn_reset" type="button" class="btn btn-default">清除</button>
+                            </span>
+                            &nbsp;&nbsp;
+                            <span id="icon_key" class=""></span>&nbsp;
+                            <span id="icon_value"></span>&nbsp;
+                        </span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="width-15"><label class="pull-right"><font color="red">*</font>资源名称:</label></td>
+                <td class="width-35"><input id="title" name="title" class="form-control input-width"/></td>
+            </tr>
+            <tr>
+                <td class="width-15"><label class="pull-right"><font color="red">*</font>排序:</label></td>
+                <td class="width-35"><input id="sort" name="sort" class="form-control input-width"/></td>
+            </tr>
+            <tr>
+                <td class="width-15"><label class="pull-right"><font color="red">*</font>链接:</label></td>
+                <td class="width-35" colspan="3"><input id="href" name="href" class="form-control input-width"/></td>
+            </tr>
+            <tr>
+                <td class="width-15"><label class="pull-right">是否显示:</label></td>
+                <td class="width-35"><input id="showFlag" name="showFlag" type="checkbox" checked/></td>
+            </tr>
+            <tr>
+                <td class="width-15"><label class="pull-right">类型:</label></td>
+                <td class="width-35">
+                    <input type="radio" value="1" name="type" id="type_menu" checked />&nbsp;菜单&nbsp;&nbsp;&nbsp;
+                    <input type="radio" value="2" name="type" id="type_button"/>&nbsp;按钮&nbsp;&nbsp;&nbsp;
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<script type="text/javascript" th:src="@{/static/plugin/jquery/1.9.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap-switch/js/bootstrap-switch.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/nice-validator/jquery.validator.min.js}" ></script>
+<script type="text/javascript" th:src="@{/static/plugin/nice-validator/local/zh-CN.js}" ></script>
+<script type="text/javascript" th:src="@{/static/plugin/icheck-1.x/icheck.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/layer/2.4/layer.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/windows.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/map.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/LoderStarLib/js/select.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/modules/sys/resources/resources-form.js}"></script>
+<script type="text/javascript">
+
+    $("#btn_reset").click(function(){
+
+        alert($("#parentID").val());
+        alert($("#parentName").val());
+    });
+
+</script>
+</body>
+</html>

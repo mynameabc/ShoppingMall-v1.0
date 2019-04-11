@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.table.ResourcesMapper" >
+    <resultMap id="BaseResultMap" type="model.entity.Resources" >
+        <id column="resourcesID" property="resourcesID" jdbcType="INTEGER" />
+        <result column="parentID" property="parentID" jdbcType="INTEGER" />
+        <result column="icon" property="icon" jdbcType="VARCHAR" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="href" property="href" jdbcType="VARCHAR" />
+        <result column="sort" property="sort" jdbcType="DECIMAL" />
+        <result column="showFlag" property="showFlag" jdbcType="BIT" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        resourcesID, parentID, icon, title, href, sort, showFlag, `type`
+    </sql>
+
+    <!-- 菜单资源列表 -->
+    <select id="getMenuList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM sys_resources `type` = 1 order by sort desc
+    </select>
+
+    <!-- 按钮资源列表 -->
+    <select id="getButtonList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM sys_resources `type` = 2 order by sort desc
+    </select>
+</mapper>

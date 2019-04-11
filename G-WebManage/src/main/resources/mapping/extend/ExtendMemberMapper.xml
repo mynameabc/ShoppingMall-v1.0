@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.ExtendMemberMapper" >
+    <resultMap id="BaseResultMemberExtendMap" type="model.entity.extend.MemberExtend" extends="com.mapper.table.MemberMapper.BaseResultMap">
+        <result column="useMoney" property="useMoney" jdbcType="VARCHAR" />
+        <result column="storeCount" property="storeCount" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        account.`use_money` AS `useMoney`,
+        (SELECT  COUNT(1) FROM member_store WHERE member_store.memberID=member.memberID GROUP BY member_store.`memberID`) AS `storeCount`,
+        member.*
+    </sql>
+    <select id="getMemberList" resultMap="BaseResultMemberExtendMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM `member` AS member LEFT JOIN `member_capital_account` AS account ON member.`memberID` = account.`memberID`
+        <where>
+            <if test="memberListDTO.name != null">
+                name = #{memberListDTO.name}
+            </if>
+            <if test="memberListDTO.email != null">
+                and email = #{memberListDTO.email}
+            </if>
+            <if test="memberListDTO.mobile != null">
+                and mobile = #{memberListDTO.mobile}
+            </if>
+            <if test="memberListDTO.memberGradeID != null">
+                and gradeID = #{memberListDTO.memberGradeID}
+            </if>
+            <if test="memberListDTO.login_lock != -1">
+                and login_lock = #{memberListDTO.login_lock}
+            </if>
+            <if test="memberListDTO.parentID != -1">
+                <if test="memberListDTO.parentID == 0">
+                    and parentID = 0
+                </if>
+                <if test="memberListDTO.parentID == 1">
+                    and parentID != 0
+                </if>
+            </if>
+        </where>
+    </select>
+
+</mapper>

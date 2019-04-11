@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+    <mapper namespace="com.mapper.ExtendRechargeMapper" >
+
+    <resultMap id="RechargePaginationResultMap" type="model.entity.extend.RechargePagination" extends="com.mapper.table.RechargeMapper.BaseResultMap">
+        <result property="mobile" column="mobile"/>
+    </resultMap>
+
+    <select id="getPaginationList" resultMap="RechargePaginationResultMap">
+        SELECT r.rechargeID, r.memberID, r.`createTime`, m.`mobile`, r.`beforeMoney`, r.`money`, r.`afterMoney`, r.`mode`, r.`platformSerialNumber`
+        FROM member_recharge r INNER JOIN member m ON r.`memberID` = m.`memberID`
+        <where>
+            <if test="rechargeDTO.memberID != null">
+                r.memberID = #{rechargeDTO.memberID}
+            </if>
+            <if test="rechargeDTO.startDateTime != null">
+                and r.createTime &gt;= #{rechargeDTO.startDateTime}
+            </if>
+            <if test="rechargeDTO.endDateTime != null">
+                and r.createTime &lt;= #{rechargeDTO.endDateTime}
+            </if>
+        </where>
+        order by r.createTime
+    </select>
+
+    <select id="getList" resultMap="com.mapper.table.RechargeMapper.BaseResultMap">
+        SELECT <include refid="com.mapper.table.RechargeMapper.Base_Column_List"/>
+        FROM member_recharge
+    </select>
+
+</mapper>

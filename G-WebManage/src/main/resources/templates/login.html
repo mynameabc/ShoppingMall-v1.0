@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/slideunlock.js-master/slide-unlock.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/nice-validator/jquery.validator.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+    <style>
+        body{
+
+            overflow: hidden;
+            position: fixed;
+            width:100%;
+            height:100%;
+
+            background: url("static/images/1.jpg");
+
+            background-size:cover;
+
+            animation-name:myfirst;
+            animation-duration:12s;
+            /*变换时间*/
+            animation-delay:2s;
+            /*动画开始时间*/
+            animation-iteration-count:infinite;
+            /*下一周期循环播放*/
+            animation-play-state:running;
+            /*动画开始运行*/
+        }
+        .form{background: rgba(255,255,255,0.2);width:400px;margin:120px auto;}
+        /*阴影*/
+        .fa{display: inline-block;top: 27px;left: 6px;position: relative;color: #ccc;}
+        input[type="text"],input[type="password"]{padding-left:26px;}
+        .checkbox{padding-left:21px;}
+    </style>
+    <style>
+
+    </style>
+    <title>后端管理系统</title>
+</head>
+<body>
+<div class="container">
+    <div class="form row">
+        <div class="form-horizontal col-md-offset-3" id="login_form">
+            <h4>&nbsp;</h4>
+            <div class="col-md-9">
+                <form id="loginForm">
+                <div class="form-group">
+                    <i class="fa fa-user fa-lg"></i>
+                    <input class="form-control required" type="text" placeholder="账号" id="account" name="account" value="underset" autofocus="autofocus" maxlength="35"/>
+                </div>
+                <div class="form-group">
+                    <i class="fa fa-lock fa-lg"></i>
+                    <input class="form-control required" type="password" placeholder="密码" id="pws" name="pws" value="111111" maxlength="50"/>
+                </div>
+                <div class="form-group">
+                    <div id="slider">
+                        <div id="slider_bg"></div>
+                        <span id="label" class="fa fa-arrow-circle-right"></span><span id="labelTip">拖动到最右边</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox">
+<!--                        <input type="checkbox" name="remember" value="1"/>记住我 -->
+                    </label>
+                </div>
+                <div class="form-group col-md-offset-9">
+                    <button id="submit" name="submit" type="submit" class="btn btn-success pull-right">登录</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="msg_holder" style="margin-top:-100px; color: #DC143C"></div>
+<script type="text/javascript" th:src="@{/static/plugin/jquery/1.9.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/slideunlock.js-master/slideunlock.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/layer/2.4/layer.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/nice-validator/jquery.validator.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/nice-validator/local/zh-CN.js}"></script>
+<script>
+    $(function () {
+/*        var slider = new SliderUnlock("#slider",{
+            successLabelTip : "验证通过"
+        },function(){
+            $("#submit").removeAttr("disabled");
+            $("#label").removeClass("fa fa-arrow-circle-right");
+            $("#label").addClass("fa fa-check-circle");
+        });
+        slider.init();*/
+    })
+
+    //验证初始化
+    $('#loginForm').validator({
+        stopOnError:true,
+        focusCleanup: true,
+        msgMaker: false, //不要自动生成消息
+        timely: 2,
+        fields: {
+            "account": {
+                rule: "required;username;",
+                msg:{
+                    required: "登陆账号不能为空!",
+                }
+            },
+            "pws": {
+                rule: "required;password;",
+                msg: {
+                    required: "密码不能为空!"
+                }
+            }
+        },
+        //验证成功
+        valid: function(form) {
+            var target = this;
+            target.holdSubmit();        //ajax提交表单之前, 先禁用submit
+            $.post("manageLogin",$("form").serialize(),function(data){
+                data = JSON.parse(data);
+                if (data.success) {
+                    top.layer.msg(data.message, {icon: 1,time:1100});
+                    window.location.href = "index";
+                } else {
+                    top.layer.msg(data.message, {icon: 2,time:1100});
+                }
+                target.holdSubmit(false);   //可以再次提交
+            });
+        },
+        invalid: function(form, errors) {
+            var html = '';
+            $.map(errors, function(msg){
+                html += '<h3 align="center">×&nbsp;'+ msg +'</h3>'
+            });
+            $('#msg_holder').html(html);
+        }
+    });
+</script>
+<script language="JavaScript">
+    if (window != top)
+        top.location.href = location.href;
+</script>
+</body>
+</html>

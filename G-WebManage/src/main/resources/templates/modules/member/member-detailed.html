@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>选择机构</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap-table/bootstrap-table.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+</head>
+<body>
+<br/>
+<input id="memberID" type="hidden" />
+<div class="container">
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#tab1" data-toggle="tab">个人信息</a>
+        </li>
+        <li>
+            <a href="#tab2" data-toggle="tab">门店信息</a>
+        </li>
+        <li>
+            <a href="#tab3" data-toggle="tab">订单信息</a>
+        </li>
+        <li>
+            <a id="tab4_target" href="#tab4" data-toggle="tab">充值记录</a>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="tab1">
+            <p>
+                个人信息
+            </p>
+        </div>
+        <div class="tab-pane fade" id="tab2">
+            <p>
+                门店信息
+            </p>
+        </div>
+        <div class="tab-pane fade" id="tab3">
+            <p>
+                订单信息
+            </p>
+        </div>
+        <div class="tab-pane fade" id="tab4">
+            <br/>
+            <form class="form-inline" role="form">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel-body">
+                            <div id="searchField" class="panel panel-default" style="margin-top: -15px; margin-bottom: -3px;">
+                                <div class="panel-body">
+                                    <div class="col-xs-12 col-sm-6 col-md-2">
+                                        <label class="label-item single-overflow pull-left" title="开始时间:">开始时间:</label>
+                                        <input id="startDate" class="form-control input-sm" type="text" readonly onClick="WdatePicker({maxDate:'#F{$dp.$D(\'endDate\')}'})">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-2">
+                                        <label class="label-item single-overflow pull-left" title="结束时间:">结束时间:</label>
+                                        <input id="endDate" class="form-control input-sm" type="text" readonly onClick="WdatePicker({minDate:'#F{$dp.$D(\'startDate\')}'})">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-1" style="margin-top: 23px;">
+                                        <button id="search" type="button" class="btn btn-default">
+                                            <span class="fa fa-search" aria-hidden="true">&nbsp;查询</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <table id="rechargeTable" style="table-layout: fixed;"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- label-success -->
+</body>
+<script type="text/javascript" th:src="@{/static/plugin/My97DatePicker/WdatePicker.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/jquery/1.9.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap-table/bootstrap-table.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap-treeview/bootstrap-treeview.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/layer/2.4/layer.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/map.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/common.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/windows.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/member/member-detailed-recharge.js}"></script>
+</html>

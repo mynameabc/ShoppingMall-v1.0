@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap-table/bootstrap-table.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap-treeview/bootstrap-treeview.min.css}"/>
+    <title>会员列表</title>
+</head>
+<body>
+<ol class="breadcrumb">
+    <li>首页</li>
+    <li>会员列表</li>
+</ol>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <div id="memberGradeNode" style="margin-left: 6px; margin-right: -23px;"></div>
+        </div>
+        <div class="col-md-10">
+            <div class="panel-body">
+                <div id="searchField" class="panel panel-default" style="margin-top: -15px; margin-bottom: -3px;">
+                    <div class="panel-body">
+                        <div class="col-xs-12 col-sm-6 col-md-2">
+                            <label class="label-item single-overflow pull-left" title="会员名/邮箱/手机号:">会员名/邮箱/手机号:</label>
+                            <input id="account" maxlength="100" class="form-control"/>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-1">
+                            <label class="label-item single-overflow pull-left" title="账号属性:">账号属性:</label>
+                            <select id="parentID" class="form-control">
+                                <option value="-1">全部</option>
+                                <option value="0">主账号</option>
+                                <option value="1">子账号</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-1">
+                            <label class="label-item single-overflow pull-left" title="状态:">状态:</label>
+                            <select id="login_lock" class="form-control">
+                                <option value="-1">全部</option>
+                                <option value="1">已启用</option>
+                                <option value="0">已停用</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <table id="table" style="table-layout: fixed;"></table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/static/plugin/jquery/1.9.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap-table/bootstrap-table.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap-treeview/bootstrap-treeview.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/layer/2.4/layer.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/map.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/common.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/windows.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/member/member-list.js}"></script>
+</html>

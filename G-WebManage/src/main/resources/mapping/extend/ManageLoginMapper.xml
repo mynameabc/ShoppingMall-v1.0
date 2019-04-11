@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.ManageLoginMapper" >
+
+    <select id="getEmployeeForLogin" resultMap="com.mapper.table.EmployeeMapper.BaseResultMap">
+        SELECT <include refid="com.mapper.table.EmployeeMapper.Base_Column_List"/>
+        FROM sys_employee where `name` = #{manageLoginDTO.account} AND `pws` = #{manageLoginDTO.pws} limit 1
+    </select>
+
+    <!-- 根据员工ID返回权限列表 -->
+    <select id="getResourcesForEmployeeID" resultMap="com.mapper.table.ResourcesMapper.BaseResultMap">
+        SELECT <include refid="com.mapper.table.ResourcesMapper.Base_Column_List"/> FROM `sys_resources`  AS resources
+        WHERE EXISTS (
+          SELECT resourcesID FROM `sys_role_resources` AS roleResources
+          WHERE resources.resourcesID = roleResources.`resourcesID` AND
+          roleID IN (SELECT roleID FROM `sys_role_employee` AS roleEmployee WHERE roleEmployee.employeeID = #{employeeID})
+        )
+        <if test="type != null">
+            AND `type` = #{type}
+        </if>
+        ORDER BY sort
+    </select>
+
+</mapper>

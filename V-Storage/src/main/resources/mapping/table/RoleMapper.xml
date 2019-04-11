@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.table.RoleMapper" >
+    <resultMap id="BaseResultMap" type="model.entity.Role" >
+        <id column="roleID" property="roleID" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="validFlag" property="validFlag" jdbcType="BIT" />
+        <result column="sort" property="sort" jdbcType="DECIMAL" />
+        <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        roleID, name, validFlag, sort, createTime, remark
+    </sql>
+
+</mapper>

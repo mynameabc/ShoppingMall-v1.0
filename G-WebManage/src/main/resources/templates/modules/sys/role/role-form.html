@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/nice-validator/jquery.validator.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/plugin/bootstrap-switch/css/bootstrap-switch.min.css}"/>
+    <style type="text/css">
+        .input-width {
+            width: 300px;
+        }
+
+        .formClass {
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+    <title>角色管理</title>
+</head>
+<body>
+<div id="formDiv" class="formClass">
+    <form id="inputForm" class="form-horizontal" data-validator-option="{timely:2, theme:'yellow_right_effect'}">
+        <input id="id" name="id" type="hidden"/>
+        <input id="handlerType" name="handlerType" type="hidden"/>
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td class="width-15 active"><label class="pull-right"><font color="red">*</font>是否有效:</label></td>
+                <td class="width-35"><input id="validFlag" name="validFlag" checked type="checkbox"/></td>
+            </tr>
+            <tr>
+                <td class="width-15 active"><label class="pull-right">角色名称:</label></td>
+                <td class="width-35"><input class="form-control input-width" id="name" name="name"></td>
+            </tr>
+            <tr>
+                <td class="width-15 active"><label class="pull-right"><font color="red">*</font>排序:</label></td>
+                <td class="width-35"><input class="form-control input-width" id="sort" name="sort"></td>
+            </tr>
+            <tr>
+                <td class="width-15 active"><label class="pull-right">描述:</label></td>
+                <td class="width-35"><textarea id="remark" name="remark" rows="3" maxlength="200" class="form-control input-width"></textarea></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<script type="text/javascript" th:src="@{/static/plugin/jquery/1.9.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/bootstrap-switch/js/bootstrap-switch.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/nice-validator/jquery.validator.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/nice-validator/local/zh-CN.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/layer/2.4/layer.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/windows.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/common.js}"></script>
+<script type="text/javascript" th:src="@{/static/plugin/map.js}"></script>
+<script type="text/javascript" th:src="@{/static/project/modules/sys/role/role-form.js}"></script>
+</body>
+</html>

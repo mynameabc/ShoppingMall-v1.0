@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.table.RoleResourcesMapper" >
+    <resultMap id="BaseResultMap" type="model.entity.RoleResources" >
+        <id column="ID" property="ID" jdbcType="VARCHAR" />
+        <result column="roleID" property="roleID" jdbcType="INTEGER" />
+        <result column="resourcesID" property="resourcesID" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        ID, roleID, resourcesID
+    </sql>
+
+    <!-- 根据角色ID返回资源ID列表 -->
+    <select id="getResourcesIDSForRoleID" resultType="java.lang.Integer">
+        SELECT resourcesID FROM `sys_role_resources` WHERE roleID = #{roleID}
+    </select>
+
+    <!-- 查看相应角色是权限数量 -->
+    <select id="getCountForRoleID" resultType="java.lang.Integer">
+        SELECT count(1) FROM `sys_role_resources` WHERE roleID = #{roleID}
+    </select>
+
+    <!-- 新增角色的权限 -->
+<!--    <insert id="addRoleResources">
+        INSERT INTO sys_role_resources(roleID, resourcesID)
+        VALUES
+        <foreach collection="IDS" index="index" item="item" separator="," >
+            (#{roleID}, #{item})
+        </foreach>
+    </insert>-->
+
+    <!-- 新增角色的权限 -->
+    <insert id="addRoleResources">
+        INSERT INTO sys_role_resources(ID, roleID, resourcesID)
+        VALUES
+        <foreach collection="IDMaps" index="key" item="value" separator="," >
+            (#{key}, #{roleID}, #{value})
+        </foreach>
+    </insert>
+
+    <!-- 根据角色ID删除记录 -->
+    <delete id="deleteRoleResources">
+        DELETE FROM sys_role_resources WHERE roleID = #{roleID}
+    </delete>
+
+</mapper>

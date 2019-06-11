@@ -27,7 +27,7 @@
         <!-- 公共包 -->
         <dependency>
             <groupId>common</groupId>
-            <artifactId>Z-Common-utils</artifactId>
+            <artifactId>utils</artifactId>
         </dependency>
 
     </dependencies>

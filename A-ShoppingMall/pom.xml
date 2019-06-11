@@ -203,7 +203,7 @@
 
             <dependency>
                 <groupId>common</groupId>
-                <artifactId>Z-Common-utils</artifactId>
+                <artifactId>utils</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
 

@@ -4,10 +4,8 @@ import auxiliary.subassembly.tree.ztree.IZTree;
 import com.mapper.table.ProductCategoryMapper;
 import communal.util.LogUtil;
 import model.entity.ProductCategory;
-import model.entity.Resources;
 import model.vo.ZTreeNode;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -20,7 +18,7 @@ import java.util.stream.Collectors;
 @Component("productCategoryZTreeImpl")
 public class ProductCategoryZTreeImpl implements IZTree {
 
-    private static Logger logger = LoggerFactory.getLogger(ProductCategoryZTreeImpl.class);
+    private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(ProductCategoryZTreeImpl.class);
 
     @Autowired
     private ProductCategoryMapper productCategoryMapper;

@@ -1,9 +1,7 @@
 package com;
 
-import org.csource.fastdfs.*;
-
 public class FastDFSClient {
-
+/*
     private TrackerClient trackerClient = null;
     private TrackerServer trackerServer = null;
     private StorageServer storageServer = null;
@@ -34,5 +32,5 @@ public class FastDFSClient {
 
         String result = storageClient1.upload_file1(local_filename, file_ext_name, null);
         return result;
-    }
+    }*/
 }

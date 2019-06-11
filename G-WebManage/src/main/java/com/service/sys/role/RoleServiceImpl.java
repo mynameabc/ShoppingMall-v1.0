@@ -7,6 +7,7 @@ import com.mapper.ExtendRoleMapper;
 import com.mapper.table.RoleEmployeeMapper;
 import com.mapper.table.RoleMapper;
 import com.mapper.table.RoleResourcesMapper;
+import com.service.member.MemberManage;
 import communal.Result;
 import communal.util.LogUtil;
 import communal.util.UUIDGeneratorUtil;
@@ -14,7 +15,8 @@ import model.dto.manage.EmployeeDTO;
 import model.dto.manage.RoleDTO;
 import model.entity.Role;
 import model.entity.extend.EmployeeExtend;
-import org.slf4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +41,7 @@ public class RoleServiceImpl implements IRole {
     @Autowired
     private RoleResourcesMapper roleResourcesMapper;
 
-    private static Logger logger = LoggerFactory.getLogger(RoleServiceImpl.class);
+    private static Logger logger = LogManager.getLogger(RoleServiceImpl.class);
 
     /**
      * 保存

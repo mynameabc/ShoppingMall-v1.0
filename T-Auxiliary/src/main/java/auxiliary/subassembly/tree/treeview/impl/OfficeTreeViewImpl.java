@@ -5,8 +5,8 @@ import communal.util.LogUtil;
 import com.mapper.table.OfficeMapper;
 import model.entity.Office;
 import model.vo.TreeViewNode;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import tk.mybatis.mapper.entity.Example;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Component("officeTreeViewImpl")
 public class OfficeTreeViewImpl implements ITreeView {
 
-    private static Logger logger = LoggerFactory.getLogger(OfficeTreeViewImpl.class);
+    private static Logger logger = LogManager.getLogger(OfficeTreeViewImpl.class);
 
     @Autowired
     private OfficeMapper officeMapper;

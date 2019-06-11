@@ -9,8 +9,8 @@ import communal.Result;
 import communal.util.LogUtil;
 import model.dto.RechargeDTO;
 import model.entity.extend.RechargePagination;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +25,7 @@ public class RechargeServiceImpl implements IRechargeService {
     @Autowired
     private ExtendRechargeMapper extendRechargeMapper;
 
-    private static Logger logger = LoggerFactory.getLogger(RechargeServiceImpl.class);
+    private static Logger logger = LogManager.getLogger(RechargeServiceImpl.class);
 
     /**
      * 充值

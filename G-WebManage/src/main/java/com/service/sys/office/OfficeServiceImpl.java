@@ -1,12 +1,14 @@
 package com.service.sys.office;
 
+import auxiliary.subassembly.tree.treeview.impl.OfficeTreeViewPorxyImpl;
 import com.mapper.table.EmployeeMapper;
 import com.mapper.table.OfficeMapper;
 import communal.Result;
 import communal.util.LogUtil;
 import model.entity.Employee;
 import model.entity.Office;
-import org.slf4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +27,7 @@ public class OfficeServiceImpl implements IOffice {
     @Autowired
     private EmployeeMapper employeeMapper;
 
-    private static Logger logger = LoggerFactory.getLogger(OfficeServiceImpl.class);
+    private static Logger logger = LogManager.getLogger(OfficeServiceImpl.class);
 
     /**
      * 保存

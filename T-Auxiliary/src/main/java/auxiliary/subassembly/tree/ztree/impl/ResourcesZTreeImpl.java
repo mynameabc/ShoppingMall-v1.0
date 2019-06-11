@@ -5,8 +5,8 @@ import communal.util.LogUtil;
 import com.mapper.table.ResourcesMapper;
 import model.entity.Resources;
 import model.vo.ZTreeNode;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Component("resourcesZTreeImpl")
 public class ResourcesZTreeImpl implements IZTree {
 
-    private static Logger logger = LoggerFactory.getLogger(ResourcesZTreeImpl.class);
+    private static Logger logger = LogManager.getLogger(ResourcesZTreeImpl.class);
 
     @Autowired
     private ResourcesMapper resourcesMapper;

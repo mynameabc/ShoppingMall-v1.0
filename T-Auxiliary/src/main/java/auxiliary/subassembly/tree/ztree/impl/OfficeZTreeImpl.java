@@ -5,8 +5,8 @@ import communal.util.LogUtil;
 import com.mapper.table.OfficeMapper;
 import model.entity.Office;
 import model.vo.ZTreeNode;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Component("officeZTreeImpl")
 public class OfficeZTreeImpl implements IZTree {
 
-    private static Logger logger = LoggerFactory.getLogger(OfficeZTreeImpl.class);
+    private static Logger logger = LogManager.getLogger(OfficeZTreeImpl.class);
 
     @Autowired
     private OfficeMapper officeMapper;

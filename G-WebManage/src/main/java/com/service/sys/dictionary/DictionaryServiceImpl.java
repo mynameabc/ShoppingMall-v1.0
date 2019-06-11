@@ -7,8 +7,8 @@ import com.mapper.table.DictionaryMapper;
 import communal.Result;
 import communal.util.LogUtil;
 import model.entity.Dictionary;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 public class DictionaryServiceImpl implements IDictionary {
 
-    private static Logger logger = LoggerFactory.getLogger(DictionaryServiceImpl.class);
+    private static Logger logger = LogManager.getLogger(DictionaryServiceImpl.class);
 
     @Autowired
     private DictionaryMapper dictionaryMapper;

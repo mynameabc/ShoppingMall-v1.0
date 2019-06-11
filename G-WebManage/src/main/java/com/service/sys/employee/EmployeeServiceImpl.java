@@ -12,15 +12,14 @@ import communal.util.LogUtil;
 import model.dto.manage.EmployeeDTO;
 import model.entity.Employee;
 import model.entity.extend.EmployeeExtend;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletResponse;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -35,7 +34,7 @@ public class EmployeeServiceImpl implements IEmployee {
     @Autowired
     private ExtendEmployeeMapper employeeStorageMapper;
 
-    private static Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
+    private static Logger logger = LogManager.getLogger(EmployeeServiceImpl.class);
 
     /**
      * 保存

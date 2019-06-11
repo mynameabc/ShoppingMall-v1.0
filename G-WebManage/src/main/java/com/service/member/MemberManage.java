@@ -5,12 +5,14 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.mapper.ExtendMemberMapper;
 import com.mapper.table.MemberMapper;
+import com.service.member.detailed.RechargeServiceImpl;
 import communal.Result;
 import communal.util.LogUtil;
 import model.dto.manage.MemberListDTO;
 import model.entity.Member;
 import model.entity.extend.MemberExtend;
-import org.slf4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,7 +22,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberManage implements IMemberManage {
 
-    private static Logger logger = LoggerFactory.getLogger(MemberManage.class);
+    private static Logger logger = LogManager.getLogger(MemberManage.class);
 
     @Autowired
     private MemberMapper memberMapper;

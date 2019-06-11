@@ -6,12 +6,11 @@ import auxiliary.Test;
 import auxiliary.office.excel.utils.ExcelUtils;
 import com.alibaba.fastjson.JSON;
 import com.service.sys.employee.IEmployee;
+import com.service.sys.role.RoleServiceImpl;
 import communal.Result;
 import communal.util.UUIDGeneratorUtil;
-import notify.SMSTemplate;
-import org.aspectj.lang.annotation.Aspect;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -43,7 +42,7 @@ public class IndexController {
     @Autowired
     private ExcelUtils excelUtils;
 
-    private static Logger logger = LoggerFactory.getLogger(IndexController.class);
+    private static Logger logger = LogManager.getLogger(RoleServiceImpl.class);
 
     @Autowired
     private IEmployee employeeService;
@@ -85,10 +84,12 @@ public class IndexController {
         String result = null;
 
         try {
+/*
 
             FastDFSClient client = new FastDFSClient("fdfs_client.conf");
             result = client.uploadFile("G:\\EF2B44C19404C01C143B85C8112617C0.jpg", "jpg");
             System.out.println(result);
+*/
 
         } catch (Exception e) {
             e.printStackTrace();

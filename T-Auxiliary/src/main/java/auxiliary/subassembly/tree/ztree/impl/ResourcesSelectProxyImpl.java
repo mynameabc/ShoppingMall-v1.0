@@ -5,8 +5,7 @@ import com.mapper.table.RoleResourcesMapper;
 import communal.util.LogUtil;
 import model.vo.ZTreeNode;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -16,7 +15,7 @@ import java.util.List;
 @Component("resourcesSelectProxyImpl")
 public class ResourcesSelectProxyImpl implements IZTree {
 
-    private static Logger logger = LoggerFactory.getLogger(ResourcesSelectProxyImpl.class);
+    private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(ResourcesSelectProxyImpl.class);
 
     @Autowired
     @Qualifier("resourcesZTreeImpl")

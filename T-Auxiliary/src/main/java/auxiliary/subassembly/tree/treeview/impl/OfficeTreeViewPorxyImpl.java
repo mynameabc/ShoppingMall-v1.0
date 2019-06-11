@@ -2,8 +2,8 @@ package auxiliary.subassembly.tree.treeview.impl;
 
 import auxiliary.subassembly.tree.treeview.ITreeView;
 import model.vo.TreeViewNode;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,7 @@ import java.util.List;
 @Component("officeTreeViewPorxyImpl")
 public class OfficeTreeViewPorxyImpl implements ITreeView {
 
-    private static Logger logger = LoggerFactory.getLogger(OfficeTreeViewPorxyImpl.class);
+    private static Logger logger = LogManager.getLogger(OfficeTreeViewPorxyImpl.class);
 
     @Autowired
     @Qualifier("officeTreeViewImpl")

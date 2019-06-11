@@ -5,8 +5,8 @@ import communal.Result;
 import communal.util.LogUtil;
 import model.entity.Office;
 import model.entity.ProductCategory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +20,7 @@ public class ProductCategoryServiceImpl implements IProductCategoryService {
 
     private static final String NAME = "商品分类";
 
-    private static Logger logger = LoggerFactory.getLogger(ProductCategoryServiceImpl.class);
+    private static Logger logger = LogManager.getLogger(ProductCategoryServiceImpl.class);
 
     @Autowired
     private ProductCategoryMapper defaultMapper;

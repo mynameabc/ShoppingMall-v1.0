@@ -1,12 +1,6 @@
 package com;
 
 import org.apache.commons.io.FilenameUtils;
-import org.csource.common.NameValuePair;
-import org.csource.fastdfs.ClientGlobal;
-import org.csource.fastdfs.StorageClient1;
-import org.csource.fastdfs.StorageServer;
-import org.csource.fastdfs.TrackerClient;
-import org.csource.fastdfs.TrackerServer;
 import org.springframework.core.io.ClassPathResource;
 
 /**
@@ -31,6 +25,7 @@ public class FastDFSUtils {
         //ClientGloble 读配置文件
         ClassPathResource resource = new ClassPathResource("fdfs_client.conf");
         try {
+            /*
             ClientGlobal.init(resource.getClassLoader().getResource("fdfs_client.conf").getPath());
             //老大客户端
             TrackerClient trackerClient = new TrackerClient();
@@ -47,7 +42,7 @@ public class FastDFSUtils {
 
 
             //  group1/M00/00/01/wKjIgFWOYc6APpjAAAD-qk29i78248.jpg
-            path = storageClient1.upload_file1(pic, ext, meta_list);
+            path = storageClient1.upload_file1(pic, ext, meta_list);*/
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

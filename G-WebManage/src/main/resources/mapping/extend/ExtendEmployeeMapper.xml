@@ -29,6 +29,7 @@
                 and employee.delFlag = #{employeeDTO.delFlag}
             </if>
             <if test="(employeeDTO.officeID != null) and (employeeDTO.officeID != 'null')">
+                <!-- and FIND_IN_SET(employee.`office_id`, TRIM(BOTH ',' FROM getChildLst(#{employeeDTO.officeID}))) -->
                 and office.officeID IN
                 <foreach collection="officeIDSList" index="index" item="item" open="(" separator="," close=")">
                     #{item}

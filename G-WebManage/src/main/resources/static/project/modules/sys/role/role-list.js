@@ -109,7 +109,7 @@ var TableInit = function () {
                 {
                     field: 'createTime',
                     title:'创建时间',
-                    width:100,
+                    width:160,
                     align: 'center',
                     formatter:function(value, row, index) {
                         return changeDateFormat(value);
@@ -118,7 +118,7 @@ var TableInit = function () {
                 {
                     field: 'remark',
                     title:'描述',
-                    width:500,
+                    width:100,
                     align: 'center'
                 },
                 {

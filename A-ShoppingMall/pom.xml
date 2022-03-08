@@ -76,7 +76,7 @@
         <commons-net.version>3.3</commons-net.version>
 
         <!-- POI Office操作组件 -->
-        <poi.version>3.9</poi.version>
+        <poi.version>5.2.1</poi.version>
 
         <!-- cos上传组件 -->
         <cos.version>26Dec2008</cos.version>

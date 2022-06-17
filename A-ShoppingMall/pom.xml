@@ -43,7 +43,7 @@
         <fat.version>2.57</fat.version>
 
         <!-- 阿里JSON工具包 -->
-        <alibaba-fastjson.version>1.2.35</alibaba-fastjson.version>
+        <alibaba-fastjson.version>1.2.83</alibaba-fastjson.version>
 
         <!-- 阿里连接池包 -->
         <druid-spring-boot-starter.version>1.1.9</druid-spring-boot-starter.version>

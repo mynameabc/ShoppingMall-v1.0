@@ -73,7 +73,7 @@
         <!-- apache相关包 -->
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <commons-io.version>1.3.2</commons-io.version>
-        <commons-net.version>3.3</commons-net.version>
+        <commons-net.version>3.9.0</commons-net.version>
 
         <!-- POI Office操作组件 -->
         <poi.version>3.9</poi.version>
